@@ -1,20 +1,23 @@
 <?php
 
 declare(strict_types=1);
-
 require_once '../vendor/autoload.php';
 
 use Database\MyPdo;
+use Html\WebPage;
+
+
+
 
 MyPDO::setConfiguration('mysql:host=mysql;dbname=cutron01_music;charset=utf8', 'web', 'web');
 
-$html = <<<HTML
-<!doctype HTML>
-<html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <title> Musique</title>
-        <style>
+
+$head=<<<HTML
+    <meta charset="utf-8">
+    <title> Musique</title>
+HTML;
+
+$style = <<<HTML
             html,body{
                 width:100%;
                 height: 100%;
@@ -41,13 +44,11 @@ $html = <<<HTML
             h1{
                 text-decoration-color: red;
             }
-        </style>
-        
-    </head>
-    <body>
+
+HTML;
+$body =<<<HTML
         <h1> Hello Music </h1>
         <div>
-
 HTML;
 
 $stmt = MyPDO::getInstance()->prepare(
@@ -61,13 +62,12 @@ SQL
 $stmt->execute();
 
 while (($ligne = $stmt->fetch()) !== false) {
-    $html .= "<p>{$ligne['name']}\n";
+    $body .= "<p>{$ligne['name']}\n";
 }
 
-$html .=<<<HTML
+$body.=<<<HTML
         </div>
-    </body>
-</html>
+
 HTML;
 
 echo $html;
