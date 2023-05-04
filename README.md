@@ -14,3 +14,22 @@ php -d display_errors -S localhost:8000 -t public/
 ```
 ## et suite à cette comande nous avec été sur l'URL : 
 http://localhost/8000/
+
+## Instalation du ficher ".php-cs-fixer"
+> Lancez une première vérification manuelle avec la commande :
+```
+php vendor/bin/php-cs-fixer fix --dry-run
+```
+<br>
+
+> Lancez une nouvelle vérification manuelle avec la commande
+```
+php vendor/bin/php-cs-fixer fix --dry-run --diff
+```
+<br>
+
+> Lancez une dernière vérification manuelle avec la commande :
+
+```
+php vendor/bin/php-cs-fixer fix
+```
