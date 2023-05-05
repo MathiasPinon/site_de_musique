@@ -61,8 +61,11 @@ SQL
 
 $stmt->execute();
 
+$page = new WebPage();
+
 while (($ligne = $stmt->fetch()) !== false) {
-    $body .= "<p>{$ligne['name']}\n";
+    $motTrans =  $page->escapeString($ligne['name']);
+    $body .= "<p>$motTrans\n";
 }
 
 $body.=<<<HTML
@@ -70,7 +73,6 @@ $body.=<<<HTML
 
 HTML;
 
-$page = new WebPage();
 $page ->appendToHead($head);
 $page ->appendCss($style);
 $page -> appendContent($body);
