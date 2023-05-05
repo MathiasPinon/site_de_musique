@@ -33,3 +33,5 @@ php vendor/bin/php-cs-fixer fix --dry-run --diff
 ```
 php vendor/bin/php-cs-fixer fix
 ```
+
+## On a creer des scripts dans le fichier composer.json pour faciliter l'utilisation de PHP CS Fixer

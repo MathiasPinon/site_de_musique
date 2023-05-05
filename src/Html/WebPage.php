@@ -1,6 +1,7 @@
 <?php
 
 namespace Html;
+
 class WebPage
 {
     private string $head ="";
