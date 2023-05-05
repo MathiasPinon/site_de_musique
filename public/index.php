@@ -70,4 +70,8 @@ $body.=<<<HTML
 
 HTML;
 
-echo $html;
+$page = new WebPage();
+$page ->appendToHead($head);
+$page ->appendCss($style);
+$page -> appendContent($body);
+echo($page->toHTML());
