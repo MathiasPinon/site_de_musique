@@ -24,7 +24,7 @@
 
     "scripts": {
         "start:linux": [
-            "bin/run-server.sh"
+            "bin/run-server.sh "
         ],
         "test:cs":[
             "php vendor/bin/php-cs-fixer fix --dry-run"
