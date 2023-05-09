@@ -31,6 +31,9 @@
         ],
         "fix:cs":[
             "php vendor/bin/php-cs-fixer fix"
+        ],
+        "start:windows": [
+            "bin/run-server.sh"
         ]
     },
     "config": {
