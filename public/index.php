@@ -60,7 +60,7 @@ $page = new WebPage();
 
 while (($ligne = $stmt->fetch()) !== false) {
     $motTrans =  $page->escapeString($ligne['name']);
-    $body .= "<p>$motTrans\n";
+    $body .= "<p><a href='artist.php/?artistId={$ligne['id']}' > $motTrans </a>\n";
 }
 
 $body.=<<<HTML
