@@ -37,3 +37,5 @@ php vendor/bin/php-cs-fixer fix
 ## On a creer des scripts dans le fichier composer.json pour faciliter l'utilisation de PHP CS Fixer
 
 ## J'ai creer un fichier qui permet de se connecter automatiquement à la base de donnée 
+
+test
