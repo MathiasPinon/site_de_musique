@@ -33,7 +33,7 @@
             "php vendor/bin/php-cs-fixer fix"
         ],
         "start:windows": [
-            "bin/run-server.sh"
+            "bin/run-server.bat"
         ]
     },
     "config": {
