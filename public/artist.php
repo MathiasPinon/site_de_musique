@@ -2,37 +2,35 @@
 
 use Database\MyPdo;
 
-
-
 if (isset($_GET['artistId']) &&
     (!empty($_GET['artistId'])) &&
-        ctype_digit($_GET['artistId'])){
-        $sql = MyPDO::getInstance()->prepare(
-            <<<'SQL'
+        ctype_digit($_GET['artistId'])) {
+    $sql = MyPDO::getInstance()->prepare(
+        <<<'SQL'
                 SELECT name
                 FROM artist
                 where id = :idArtiste
 SQL
-        );
-        $sql->execute(['idArtiste' => $_GET['artistId']]);
-        $resultatReq = $sql->fetchAll(PDO::FETCH_NUM);
+    );
+    $sql->execute(['idArtiste' => $_GET['artistId']]);
+    $resultatReq = $sql->fetchAll(PDO::FETCH_NUM);
 
-        $sql1 = MyPDO::getInstance()->prepare(
-            <<<SQL
+    $sql1 = MyPDO::getInstance()->prepare(
+        <<<SQL
                         SELECT year , name 
                         FROM album
                         WHERE artistId = :idArtiste
                         ORDER BY 1 DESC ,2
                     SQL
-        );
+    );
 
-        $sql1->execute(['idArtiste' => $_GET['artistId']]);
-        $resultat = $sql1->fetchAll(PDO::FETCH_NUM);
+    $sql1->execute(['idArtiste' => $_GET['artistId']]);
+    $resultat = $sql1->fetchAll(PDO::FETCH_NUM);
 
-        if(count($resultatReq)===0){
-            exit(404);
-        }
-        $html = <<<HTML
+    if(count($resultatReq)===0) {
+        exit(404);
+    }
+    $html = <<<HTML
                         <!DOCTYPE HTML>
                         <html>
                             <head>
@@ -84,18 +82,18 @@ SQL
                                 <div>
                     HTML;
 
-        foreach ($resultat as $ligne)
-            $html .= "<p> {$ligne[0]} {$ligne[1]} </p>";
+    foreach ($resultat as $ligne) {
+        $html .= "<p> {$ligne[0]} {$ligne[1]} </p>";
+    }
 
-        $html .= <<<HTML
+    $html .= <<<HTML
                             </div>
                         </body>
                         </html>
                     HTML;
 
-        echo($html);
-        }
-else{
+    echo($html);
+} else {
     header("Location: index.php");
     exit(302);
 }

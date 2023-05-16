@@ -2,3 +2,5 @@ pptx
 .idea
 .php-cs-fixer.cache
 /vendor/
+tests/musiclite.sqlite
+tests/musiclite.sqlite_snapshot

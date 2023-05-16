@@ -8,6 +8,11 @@
             "": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Mathias Pinon",
@@ -36,6 +41,16 @@
         ],
         "start:windows": [
             "bin/run-server.bat"
+        ],
+        "test:crud": [
+            "php vendor/bin/codecept run Crud"
+        ],
+        "test:codecept": [
+            "@test:crud"
+        ],
+        "test": [
+            "@test:crud",
+            "@test:codecept"
         ]
     },
     "config": {

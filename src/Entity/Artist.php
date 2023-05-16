@@ -6,13 +6,13 @@ namespace Entity;
 
 class Artist
 {
-    private string $id;
+    private int  $id ;
     private string $name;
 
     /**
      * @return string
      */
-    public function getId(): string
+    public function getId(): int
     {
         return $this->id;
     }

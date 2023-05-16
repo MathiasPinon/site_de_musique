@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 
 use Database\MyPdo;
+use Entity\Collection\ArtistCollection;
 use Html\WebPage;
-
 
 $head=<<<HTML
     <meta charset="utf-8">
@@ -46,21 +46,14 @@ $body =<<<HTML
         <div>
 HTML;
 
-$stmt = MyPDO::getInstance()->prepare(
-    <<<'SQL'
-    SELECT id, name
-    FROM artist
-    ORDER BY name
-SQL
-);
-
-$stmt->execute();
+$artiste = (new Entity\Collection\ArtistCollection())->findAll();
 
 $page = new WebPage();
 
-while (($ligne = $stmt->fetch()) !== false) {
-    $motTrans =  $page->escapeString($ligne['name']);
-    $body .= "<p><a href='artist.php/?artistId={$ligne['id']}' > $motTrans </a>\n";
+foreach($artiste as $ligne){
+    $motTrans =  $page->escapeString($ligne->getName());
+
+    $body .= "<p><a href='artist.php/?artistId={$ligne->getId()}' > $motTrans </a>\n";
 }
 
 $body.=<<<HTML
