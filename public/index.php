@@ -5,6 +5,7 @@ declare(strict_types=1);
 
 use Database\MyPdo;
 use Entity\Collection\ArtistCollection;
+use Html\AppWebPage;
 use Html\WebPage;
 
 $head=<<<HTML
@@ -12,56 +13,33 @@ $head=<<<HTML
     <title> Musique</title>
 HTML;
 
-$style = <<<HTML
-            html,body{
-                width:100%;
-                height: 100%;
-            }
-            p{
-                border: 5px solid black;
-                background-color: ghostwhite;
-                text-decoration-color: black;
-                width : 4cm ; 
-                padding-top: 30px;
-                padding-bottom:30px;
-                margin: 0.5cm ;
-                text-align: center;
-                box-sizing: border-box;  
-            }
-            div{
-                overflow:auto;
-                padding : 10px ;
-                border: 10px dashed #5b5b5b ;
-                box-sizing: border-box;
-                width : 7cm ; 
-                height: 10cm ;
-            }
-            h1{
-                text-decoration-color: red;
-            }
 
-HTML;
 $body =<<<HTML
-        <h1> Hello Music </h1>
+        <header>
+            <h1> Hello Music </h1>
+        </header>
+        <content>
         <div>
 HTML;
 
 $artiste = (new Entity\Collection\ArtistCollection())->findAll();
 
-$page = new WebPage();
+$page = new AppWebPage();
 
-foreach($artiste as $ligne){
-    $motTrans =  $page->escapeString($ligne->getName());
-
-    $body .= "<p><a href='artist.php/?artistId={$ligne->getId()}' > $motTrans </a>\n";
+foreach($artiste as $ligne) {
+    $motTrans = $page->escapeString($ligne->getName());
+    $body .= <<<HTML
+        <p><a href='artist.php/?artistId={$ligne->getId()}' > $motTrans </a>\n";
+    HTML;
 }
-
-$body.=<<<HTML
-        </div>
-
+    $body .= <<<HTML
+            </div>
+        </content> 
+        <footer>
+           <p>Modification</p>
+        </footer>
 HTML;
 
-$page ->appendToHead($head);
-$page ->appendCss($style);
-$page -> appendContent($body);
-echo($page->toHTML());
+    $page->appendToHead($head);
+    $page->appendContent($body);
+    echo $page->toHTML();

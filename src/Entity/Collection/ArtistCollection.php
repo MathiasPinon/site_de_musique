@@ -19,7 +19,7 @@ class ArtistCollection
     {
         $sql = MyPDO::getInstance()->prepare(
             <<<'SQL'
-            SELECT id , name
+            SELECT id , name 
             FROM artist
             ORDER BY name
             SQL
