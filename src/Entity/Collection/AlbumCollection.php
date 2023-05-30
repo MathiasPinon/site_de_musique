@@ -8,7 +8,7 @@ use PDO;
 
 class AlbumCollection
 {
-    public function findByArtistId(int $artistId):array{
+    public static function findByArtistId(int $artistId):array{
         $sql = MyPDO::getInstance()->prepare(
             <<<'SQL'
             SELECT id , name , year , artistId , genreId , coverId

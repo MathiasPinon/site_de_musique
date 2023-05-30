@@ -29,7 +29,7 @@ class Artist
         return $this->name;
     }
 
-    public function findById(int $id): Artist
+    public static function findById(int $id): Artist
     {
         $sql = MyPDO::getInstance()->prepare(
             <<<SQL
@@ -41,7 +41,7 @@ SQL
         $sql -> setFetchMode(PDO::FETCH_CLASS, Artist::class);
         $sql -> execute([':ID' => $id]);
         $res = $sql ->fetch();
-        if($res===false){
+        if($res===false) {
             throw new EntityNotFoundException();
         }
         return $res;
