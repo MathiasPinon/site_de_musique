@@ -6,10 +6,11 @@ use Entity\Exception\EntityNotFoundException;
 use Exception\ParameterException;
 
 try {
-    ///////////////////////
-    // À vous de jouer ! //
-    ///////////////////////
-} catch (ParameterException) {
+    if($_GET['coverId'] !== int($_GET['coverId'])){
+        throw new \mysql_xdevapi\Exception('ParameterException');
+    };
+}
+catch (ParameterException) {
     http_response_code(400);
 } catch (EntityNotFoundException) {
     http_response_code(404);

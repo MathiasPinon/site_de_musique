@@ -56,7 +56,7 @@ SQL
                 WHERE id = :ID ;
 SQL
         );
-        $sql->excute([':ID' => $this->id]);
+        $sql->execute([':ID' => $this->id]);
         $sql -> fetchAll(PDO::FETCH_CLASS, Album::class);
     }
 
