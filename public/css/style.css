@@ -41,6 +41,17 @@ body{
     flex-direction: row;
     margin-bottom: 3px;
 }
+
+.album__cover{
+    margin-right: 5px;
+    margin-left: 5px;
+    border: solid 1px black;
+    align-items: center;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+}
 .album__year{
     margin-right: 5px;
     margin-left: 5px;

@@ -2,6 +2,7 @@
 
 use Database\MyPdo;
 use Entity\Artist;
+use Entity\Cover;
 
 if (isset($_GET['artistId']) &&
     (!empty($_GET['artistId'])) &&
@@ -27,19 +28,23 @@ if (isset($_GET['artistId']) &&
 
     foreach ($albums as $album) {
         $nom = $page->escapeString($album->getName());
+        $id = $album->getCoverId();
         $page->appendContent(<<<HTML
         <div class="album">
-             <div class="album__year">{$album->getYear()}</div>
-             <div class="album__name">{$nom}</div>
+            <div class="album__cover"><img src="cover.php?coverId={$id}"></div>
+            <div class="info">
+                 <div class="album__year">{$album->getYear()}</div>
+                 <div class="album__name">{$nom}</div>
+             </div>
         </div>
     HTML);
     }
-
+    $lastMod = \Html\WebPage::getLastModififcation();
     $page->appendContent( <<<HTML
                                 </div>
                                 </div>
                             </content>
-                            <div class="footer"> <p>Derniere modification</p></div>
+                            <div class="footer"> <p> {$lastMod} </p></div>
                         </body>
                         </html>
                     HTML);

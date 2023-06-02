@@ -38,4 +38,5 @@ class CoverCest
         $I->haveHttpHeader('Content-Type', 'image/jpeg');
         $I->seeResponseContentIs(file_get_contents(codecept_data_dir() . '/cover/cover411.jpeg'));
     }
+
 }
